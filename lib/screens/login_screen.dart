@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/core/app_colors.dart';
-import 'package:tastybite/core/app_text_styles.dart';
+import 'package:tastybite/screens/bottom_nav_screen.dart';
 import 'package:tastybite/widgets/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -8,11 +8,14 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(screenWidth * 0.04),
           child: Column(
             children: [
               // Top right "Later"
@@ -28,7 +31,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: screenHeight * 0.02),
 
               // Image grid
               Column(
@@ -36,55 +39,86 @@ class LoginScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('assets/images/log_one.png'),
-                      Image.asset('assets/images/log_two.png'),
+                      Image.asset(
+                        'assets/images/log_one.png',
+                        width: screenWidth * 0.3,
+                      ),
+                      Image.asset(
+                        'assets/images/log_two.png',
+                        width: screenWidth * 0.3,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: screenHeight * 0.015),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('assets/images/log_three.png'),
-                      Image.asset('assets/images/log_four.png'),
+                      Image.asset(
+                        'assets/images/log_three.png',
+                        width: screenWidth * 0.3,
+                      ),
+                      Image.asset(
+                        'assets/images/log_four.png',
+                        width: screenWidth * 0.3,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: screenHeight * 0.015),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('assets/images/log_five.png'),
-                      Image.asset('assets/images/log_six.png'),
+                      Image.asset(
+                        'assets/images/log_five.png',
+                        width: screenWidth * 0.3,
+                      ),
+                      Image.asset(
+                        'assets/images/log_six.png',
+                        width: screenWidth * 0.3,
+                      ),
                     ],
                   ),
                 ],
               ),
 
-              const SizedBox(height: 65),
+              SizedBox(height: screenHeight * 0.08),
 
               // Heading
               Text(
                 'Help your path to health goals with happiness',
-                style: AppTextStyles.heading,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.05,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.white,
+                ),
                 textAlign: TextAlign.center,
               ),
-              Spacer(),
-              // Login button
-              CustomButton(text: 'Login', onTap: () {}),
 
-              const SizedBox(height: 10),
+              const Spacer(),
+
+              // Login button
+              CustomButton(
+                text: 'Login',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BottomNavScreen()),
+                  );
+                },
+              ),
+
+              SizedBox(height: screenHeight * 0.015),
 
               // Create account text
               Text(
                 'Create New Account',
                 style: TextStyle(
-                  //fontFamily: 'SofiaPro',
                   fontWeight: FontWeight.w700,
-                  fontSize: 16,
+                  fontSize: screenWidth * 0.045,
                   color: AppColors.white,
                 ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: screenHeight * 0.025),
             ],
           ),
         ),
