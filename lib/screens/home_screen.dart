@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/core/app_colors.dart';
+import 'package:tastybite/screens/details_screen.dart';
 import 'package:tastybite/widgets/featured_card.dart';
 import 'package:tastybite/core/app_text_styles.dart';
 import 'package:tastybite/widgets/food_card.dart';
@@ -206,6 +207,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     final item = foodItems[index];
                     return FoodCard(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(),
+                          ),
+                        );
+                      },
                       imagePath: item['image']!,
                       title: item['title']!,
                       kcal: item['kcal']!,

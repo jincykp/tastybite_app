@@ -162,7 +162,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 imagePath: 'assets/images/blubery.png',
                 title: 'Blueberry with egg for breakfast',
                 author: 'Alice Fala',
-                authorAvatarPath: 'assets/images\per_one.jpg',
+                authorAvatarPath: 'assets/images/per_one.jpg',
                 onTap: () {},
                 margin: EdgeInsets.symmetric(vertical: 8),
               ),
