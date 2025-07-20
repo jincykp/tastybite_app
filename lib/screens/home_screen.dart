@@ -3,6 +3,7 @@ import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/widgets/featured_card.dart';
 import 'package:tastybite/core/app_text_styles.dart';
 import 'package:tastybite/widgets/food_card.dart';
+import 'package:tastybite/widgets/seletion_header.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final screenWidth = size.width;
     final screenHeight = size.height;
     String selectedCategory = 'Breakfast';
+
+    // Consistent padding value for all content
+    final contentPadding = EdgeInsets.symmetric(horizontal: screenWidth * 0.04);
 
     final List<String> categories = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
     final List<Map<String, String>> foodItems = [
@@ -48,9 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               // Top Bar
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: screenWidth * 0.04,
-                  vertical: screenHeight * 0.015,
+                padding: contentPadding.copyWith(
+                  top: screenHeight * 0.015,
+                  bottom: screenHeight * 0.015,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,15 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // Featured Title
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
-                child: Text(
-                  'Featured',
-                  style: AppTextStyles.poppins(
-                    fontSize: screenWidth * 0.045,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.black,
-                  ),
-                ),
+                padding: contentPadding,
+                child: SectionHeader(title: 'Featured'),
               ),
 
               // Horizontally Scrollable Cards
@@ -115,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: screenHeight * 0.24,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
+                  padding: contentPadding,
                   child: Row(
                     children: const [
                       FeaturedCard(),
@@ -132,21 +129,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // Category Title
               Padding(
-                padding: EdgeInsets.all(screenWidth * 0.02),
-                child: Text(
-                  'Category',
-                  style: AppTextStyles.poppins(
-                    fontSize: screenWidth * 0.045,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.black,
-                  ),
+                padding: contentPadding,
+                child: SectionHeader(
+                  title: 'Category',
+                  actionText: 'See All',
+                  onActionTap: () {},
                 ),
               ),
-
+              SizedBox(height: 10),
+              // Category Selection
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
+                  padding: contentPadding,
                   child: Row(
                     children: categories.map((category) {
                       final isSelected = selectedCategory == category;
@@ -187,25 +182,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 15),
+              // Popular Recipes Title
               Padding(
-                padding: EdgeInsets.all(
-                  screenWidth * 0.02,
-                ), // Adjust the multiplier as needed
-                child: Text(
-                  'Popular Recipes',
-                  style: AppTextStyles.poppins(
-                    fontSize: screenWidth * 0.045,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.black,
-                  ),
+                padding: contentPadding,
+                child: SectionHeader(
+                  title: 'Popular Recipes',
+                  actionText: 'See All',
+                  onActionTap: () {
+                    // your navigation or action here
+                  },
                 ),
               ),
+              SizedBox(height: 10),
+              // Popular Recipes List
               SizedBox(
                 height: 240,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: foodItems.length,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: contentPadding,
                   separatorBuilder: (_, __) => const SizedBox(width: 12),
                   itemBuilder: (context, index) {
                     final item = foodItems[index];
