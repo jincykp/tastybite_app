@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/core/app_colors.dart';
+import 'package:tastybite/core/app_text_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -21,6 +22,8 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return SizedBox(
       width: width,
       height: height,
@@ -34,10 +37,9 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
-            fontFamily: 'SofiaPro',
+          style: AppTextStyles.poppins(
+            fontSize: screenWidth * 0.04,
             fontWeight: FontWeight.w700,
-            fontSize: 16,
             color: textColor,
           ),
         ),

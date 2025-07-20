@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/screens/bottom_nav_screen.dart';
 import 'package:tastybite/widgets/custom_button.dart';
+import 'package:tastybite/core/app_text_styles.dart'; // ✅ Import your AppTextStyles
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -24,9 +25,9 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Later',
-                    style: TextStyle(
+                    style: AppTextStyles.poppins(
                       color: AppColors.white,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
@@ -85,9 +86,9 @@ class LoginScreen extends StatelessWidget {
               // Heading
               Text(
                 'Help your path to health goals with happiness',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.05,
-                  fontWeight: FontWeight.bold,
+                style: AppTextStyles.poppins(
+                  fontSize: screenWidth * 0.050,
+                  fontWeight: FontWeight.w600,
                   color: AppColors.white,
                 ),
                 textAlign: TextAlign.center,
@@ -111,9 +112,9 @@ class LoginScreen extends StatelessWidget {
               // Create account text
               Text(
                 'Create New Account',
-                style: TextStyle(
+                style: AppTextStyles.poppins(
+                  fontSize: screenWidth * 0.040,
                   fontWeight: FontWeight.w700,
-                  fontSize: screenWidth * 0.045,
                   color: AppColors.white,
                 ),
               ),
