@@ -44,7 +44,8 @@ class MyFavoriteCard extends StatelessWidget {
                     top: 8,
                     right: 8,
                     child: CustomIconButton(
-                      icon: Icons.favorite_border,
+                      icon: Icons.favorite,
+                      iconColor: AppColors.primary,
                       onTap: () {
                         // Handle favorite tap
                       },

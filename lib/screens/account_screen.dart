@@ -35,6 +35,18 @@ class AccountScreen extends StatelessWidget {
         'avatarPath': 'assets/images/per_three.jpg',
         'authorName': 'John Lee',
       },
+      {
+        'imagePath': 'assets/images/favorate_seven.png',
+        'title': 'Beefy Noodle Bowl',
+        'avatarPath': 'assets/images/per_four.jpg',
+        'authorName': 'Agnes',
+      },
+      {
+        'imagePath': 'assets/images/favorate_eight.jpg',
+        'title': 'Sizzling Beef Ramen',
+        'avatarPath': 'assets/images/per_three.jpg',
+        'authorName': 'John Lee',
+      },
     ];
 
     final size = MediaQuery.of(context).size;
@@ -71,8 +83,7 @@ class AccountScreen extends StatelessWidget {
               const SizedBox(height: 15),
               SectionHeader(title: 'My Favorites', actionText: 'See All'),
               const SizedBox(height: 8),
-              SizedBox(
-                height: 400, // Adjust height as needed
+              Expanded(
                 child: GridView.builder(
                   itemCount: favorites.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -81,7 +92,6 @@ class AccountScreen extends StatelessWidget {
                     crossAxisSpacing: 12,
                     childAspectRatio: 0.85,
                   ),
-                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     final fav = favorites[index];
                     return MyFavoriteCard(
