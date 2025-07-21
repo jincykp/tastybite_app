@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/screens/home_screen.dart';
 import 'package:tastybite/screens/notification_screen.dart';
-import 'package:tastybite/screens/profile_screen.dart';
+import 'package:tastybite/screens/account_screen.dart';
 import 'package:tastybite/screens/search_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     HomeScreen(),
     SearchScreen(),
     NotificationScreen(),
-    ProfileScreen(),
+    AccountScreen(),
   ];
 
   void _onItemTapped(int index) {
