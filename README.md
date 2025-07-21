@@ -19,6 +19,7 @@ This is a Flutter UI implementation based on the provided Figma design. The app 
 - Fully responsive layout  
 - Accurate UI matching the Figma design  
 - Navigation between screens  
+  - Tapping a popular recipe card on the Home Screen navigates to the Recipe Detail Screen  
 - Reusable widgets and components  
 - Dummy/static content (no backend)  
 - Clean and structured codebase  
@@ -43,7 +44,6 @@ This is a Flutter UI implementation based on the provided Figma design. The app 
    git clone https://github.com/jincykp/tastybite_app.git
    cd tastybite_app
 2. **Install dependencies**
-   `flutter pub get`
-3. **Run the app**
+  `flutter pub get`
+3. **Run the app**  
    `flutter run`
-
