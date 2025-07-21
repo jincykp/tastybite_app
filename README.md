@@ -42,5 +42,8 @@ This is a Flutter UI implementation based on the provided Figma design. The app 
    ```bash
    git clone [https://github.com/your-username/tastybite-ui.git](https://github.com/jincykp/tastybite_app.git)
    cd tastybite_app
-   flutter pub get
-   flutter run
+2. **Install dependencies**
+     flutter pub get
+3. **Run the app**
+     flutter run
+
