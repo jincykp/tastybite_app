@@ -1,16 +1,46 @@
-# tastybite
+#  TastyBite - Flutter UI Challenge
 
-A new Flutter project.
+This is a Flutter UI implementation based on the provided Figma design. The app recreates the following screens using static data and dummy content:
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✅ Implemented Screens
 
-A few resources to get you started if this is your first Flutter project:
+- Login/Create Account Screen  
+- Home Screen  
+- Search Screen  
+- Recipe Detail Screen  
+- Account Screen  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📱 Features
+
+- Fully responsive layout  
+- Accurate UI matching the Figma design  
+- Navigation between screens  
+- Reusable widgets and components  
+- Dummy/static content (no backend)  
+- Clean and structured codebase  
+- **Used GetX for reactive state management**  
+  - Favorite toggle functionality  
+  - Ingredient quantity updates  
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Flutter SDK (latest stable version)  
+- Android Studio or VS Code with Flutter plugin  
+- Emulator or physical device
+
+### Steps to Run
+
+1. **Clone the repository**  
+   ```bash
+   git clone [https://github.com/your-username/tastybite-ui.git](https://github.com/jincykp/tastybite_app.git)
+   cd tastybite_app
+   flutter pub get
+   flutter run
