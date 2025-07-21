@@ -40,10 +40,10 @@ This is a Flutter UI implementation based on the provided Figma design. The app 
 
 1. **Clone the repository**  
    ```bash
-   git clone [https://github.com/your-username/tastybite-ui.git](https://github.com/jincykp/tastybite_app.git)
+   git clone https://github.com/jincykp/tastybite_app.git
    cd tastybite_app
 2. **Install dependencies**
-     flutter pub get
+   `flutter pub get`
 3. **Run the app**
-     flutter run
+   `flutter run`
 
