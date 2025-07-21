@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/core/app_text_styles.dart';
+import 'package:tastybite/screens/incredient_controller.dart';
 
 class IngredientCard extends StatelessWidget {
   final String imagePath;
   final String title;
-  final int quantity;
-  final VoidCallback? onIncrement;
-  final VoidCallback? onDecrement;
 
   const IngredientCard({
     super.key,
     required this.imagePath,
     required this.title,
-    required this.quantity,
-    this.onIncrement,
-    this.onDecrement,
   });
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final ingredientController = Get.find<IngredientController>();
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: screenWidth * 0.02),
@@ -69,50 +66,57 @@ class IngredientCard extends StatelessWidget {
             ),
           ),
 
-          // Counter
-          Row(
-            children: [
-              GestureDetector(
-                onTap: onDecrement,
-                child: Container(
-                  padding: EdgeInsets.all(screenWidth * 0.015),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.primary),
-                    borderRadius: BorderRadius.circular(screenWidth * 0.015),
-                  ),
-                  child: Icon(
-                    Icons.remove,
-                    size: screenWidth * 0.04,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ),
-              SizedBox(width: screenWidth * 0.02),
-              Text(
-                '$quantity',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: screenWidth * 0.04,
-                ),
-              ),
-              SizedBox(width: screenWidth * 0.02),
-              GestureDetector(
-                onTap: onIncrement,
-                child: Container(
-                  padding: EdgeInsets.all(screenWidth * 0.015),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.primary),
-                    borderRadius: BorderRadius.circular(screenWidth * 0.015),
-                  ),
-                  child: Icon(
-                    Icons.add,
-                    size: screenWidth * 0.04,
-                    color: AppColors.primary,
+          // Counter with GetX
+          Obx(() {
+            final quantity = ingredientController.getQuantity(title);
+            final isMinimum = ingredientController.isAtMinimum(title);
+
+            return Row(
+              children: [
+                GestureDetector(
+                  onTap: () => ingredientController.decreaseQuantity(title),
+                  child: Container(
+                    padding: EdgeInsets.all(screenWidth * 0.015),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: isMinimum ? AppColors.grey : AppColors.primary,
+                      ),
+                      borderRadius: BorderRadius.circular(screenWidth * 0.015),
+                    ),
+                    child: Icon(
+                      Icons.remove,
+                      size: screenWidth * 0.04,
+                      color: isMinimum ? AppColors.grey : AppColors.primary,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+                SizedBox(width: screenWidth * 0.02),
+                Text(
+                  '$quantity',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: screenWidth * 0.04,
+                  ),
+                ),
+                SizedBox(width: screenWidth * 0.02),
+                GestureDetector(
+                  onTap: () => ingredientController.increaseQuantity(title),
+                  child: Container(
+                    padding: EdgeInsets.all(screenWidth * 0.015),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.primary),
+                      borderRadius: BorderRadius.circular(screenWidth * 0.015),
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      size: screenWidth * 0.04,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }),
         ],
       ),
     );

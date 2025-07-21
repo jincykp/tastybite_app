@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/core/app_text_styles.dart';
 import 'package:tastybite/data/dummy_data.dart';
+import 'package:tastybite/screens/favorate_controller.dart';
+import 'package:tastybite/screens/incredient_controller.dart';
 import 'package:tastybite/widgets/custom_button.dart';
 import 'package:tastybite/widgets/custom_fav_button.dart';
 import 'package:tastybite/widgets/ingrediants_card.dart';
@@ -19,11 +22,13 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  final ingredientController = Get.put(IngredientController());
+  final favoritesController = Get.find<FavoritesController>();
+
   @override
-  Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final topPadding = MediaQuery.of(context).padding.top;
+  void initState() {
+    super.initState();
+    // Initialize ingredients with default data
     List<Map<String, dynamic>> items = [
       {
         "image": "assets/images/tortilla_chips.png",
@@ -43,19 +48,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
       },
     ];
 
-    void increaseQty(int index) {
-      setState(() {
-        items[index]["quantity"] += 1;
-      });
-    }
+    // Initialize the ingredient controller with the items
+    ingredientController.initializeIngredients(items);
+  }
 
-    void decreaseQty(int index) {
-      setState(() {
-        if (items[index]["quantity"] > 0) {
-          items[index]["quantity"] -= 1;
-        }
-      });
-    }
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final topPadding = MediaQuery.of(context).padding.top;
+
+    // Recipe ID for favorites
+    const recipeId = "healthy_taco_salad";
+
+    List<Map<String, dynamic>> items = [
+      {"image": "assets/images/tortilla_chips.png", "title": "Tortilla Chips"},
+      {"image": "assets/images/red_cabbage.png", "title": "Red Cabbage"},
+      {"image": "assets/images/peanuts.png", "title": "Peanuts"},
+      {"image": "assets/images/onion.png", "title": "Red Onions"},
+    ];
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -98,13 +109,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
           Positioned(
             top: topPadding + screenHeight * 0.015,
             right: screenWidth * 0.04,
-            child: CustomIconButton(icon: Icons.favorite_border, onTap: () {}),
+            child: Obx(
+              () => CustomIconButton(
+                icon: favoritesController.isFavorite(recipeId)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                iconColor: favoritesController.isFavorite(recipeId)
+                    ? Colors.red
+                    : AppColors.black,
+                onTap: () {
+                  favoritesController.toggleFavorite(recipeId);
+                },
+              ),
+            ),
           ),
 
           // DraggableScrollableSheet instead of positioned container
           DraggableScrollableSheet(
-            initialChildSize:
-                0.58, // Same as (1 - 0.42) from your original positioning
+            initialChildSize: 0.58,
             minChildSize: 0.58,
             maxChildSize: 0.95,
             builder: (context, scrollController) {
@@ -232,24 +254,21 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         title: 'Ingredients',
                         actionText: 'Add All to Cart',
                       ),
-                      Text(
-                        '${items.length} Item',
-                        style: AppTextStyles.poppins(
-                          color: AppColors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
+                      Obx(
+                        () => Text(
+                          '${ingredientController.getTotalItems()} Items',
+                          style: AppTextStyles.poppins(
+                            color: AppColors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                       // Display all ingredient cards
-                      ...items.asMap().entries.map((entry) {
-                        int index = entry.key;
-                        Map<String, dynamic> item = entry.value;
+                      ...items.map((item) {
                         return IngredientCard(
                           imagePath: item['image'],
                           title: item['title'],
-                          quantity: item['quantity'],
-                          onIncrement: () => increaseQty(index),
-                          onDecrement: () => decreaseQty(index),
                         );
                       }).toList(),
                       SizedBox(height: 15),
@@ -273,7 +292,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           style: AppTextStyles.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
-
                             color: AppColors.black,
                           ),
                         ),
@@ -282,7 +300,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           style: AppTextStyles.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w300,
-
                             color: AppColors.black,
                           ),
                         ),
@@ -293,8 +310,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         actionText: 'See All',
                       ),
                       SizedBox(
-                        height:
-                            160, // Increased height to prevent card overflow
+                        height: 160,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(

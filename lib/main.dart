@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:tastybite/screens/favorate_controller.dart';
+import 'package:tastybite/screens/incredient_controller.dart';
 import 'package:tastybite/screens/login_screen.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       initialBinding: BindingsBuilder(() {
         // Initialize the FavoritesController globally
         Get.put(FavoritesController());
+        Get.put(IngredientController());
       }),
       debugShowCheckedModeBanner: false,
     );
