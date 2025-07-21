@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:tastybite/screens/favorate_controller.dart';
 import 'package:tastybite/screens/login_screen.dart';
 
 void main() {
@@ -10,12 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'TastyBite',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: LoginScreen(),
+      initialBinding: BindingsBuilder(() {
+        // Initialize the FavoritesController globally
+        Get.put(FavoritesController());
+      }),
       debugShowCheckedModeBanner: false,
     );
   }

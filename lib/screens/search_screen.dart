@@ -45,6 +45,10 @@ class _SearchScreenState extends State<SearchScreen> {
               SizedBox(height: screenHeight * 0.015),
               TextFormField(
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 11,
+                    horizontal: 16,
+                  ),
                   prefixIcon: Icon(
                     Icons.search,
                     color: AppColors.black,

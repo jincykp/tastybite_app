@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/core/app_text_styles.dart';
+import 'package:tastybite/screens/favorate_controller.dart';
 import 'package:tastybite/widgets/custom_fav_button.dart';
 
 class FoodCard extends StatelessWidget {
@@ -8,7 +10,7 @@ class FoodCard extends StatelessWidget {
   final String title;
   final String kcal;
   final String time;
-  final VoidCallback? onTap; // <-- onTap callback
+  final VoidCallback? onTap;
 
   const FoodCard({
     super.key,
@@ -27,8 +29,14 @@ class FoodCard extends StatelessWidget {
     final cardWidth = screenWidth * 0.5;
     final horizontalPadding = screenWidth * 0.035;
 
+    // Get the favorites controller
+    final favoritesController = Get.find<FavoritesController>();
+
+    // Create unique ID for this food item
+    final itemId = title.toLowerCase().replaceAll(' ', '_');
+
     return GestureDetector(
-      onTap: onTap, // <-- Trigger the callback on tap
+      onTap: onTap,
       child: Container(
         width: cardWidth,
         decoration: BoxDecoration(
@@ -66,11 +74,21 @@ class FoodCard extends StatelessWidget {
                   Positioned(
                     top: 8,
                     right: 8,
-                    child: CustomIconButton(
-                      icon: Icons.favorite_border,
-                      onTap: () {
-                        // Handle favorite tap
-                      },
+                    child: Obx(
+                      () => CustomIconButton(
+                        icon: favoritesController.isFavorite(itemId)
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        iconColor: favoritesController.isFavorite(itemId)
+                            ? Colors.red
+                            : AppColors.black,
+                        size: 20,
+                        padding: 6,
+                        backgroundColor: AppColors.white,
+                        onTap: () {
+                          favoritesController.toggleFavorite(itemId);
+                        },
+                      ),
                     ),
                   ),
                 ],

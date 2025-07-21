@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-
+              SizedBox(height: screenHeight * 0.008),
               // Featured Title
               Padding(
                 padding: contentPadding,
@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-
+              SizedBox(height: 10),
               // Category Title
               Padding(
                 padding: contentPadding,
@@ -190,9 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SectionHeader(
                   title: 'Popular Recipes',
                   actionText: 'See All',
-                  onActionTap: () {
-                    // your navigation or action here
-                  },
+                  onActionTap: () {},
                 ),
               ),
               SizedBox(height: 10),

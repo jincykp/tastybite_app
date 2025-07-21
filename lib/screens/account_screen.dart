@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tastybite/core/app_text_styles.dart';
 import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/widgets/account_profile_card.dart';
-import 'package:tastybite/widgets/custom_fav_button.dart';
 import 'package:tastybite/widgets/my_favorates_card.dart';
 import 'package:tastybite/widgets/section_header.dart';
 
@@ -22,21 +21,20 @@ class AccountScreen extends StatelessWidget {
         'imagePath': 'assets/images/scard_two.png',
         'title': 'Spicy Chicken Bowl',
         'avatarPath': 'assets/images/per_three.jpg',
-        'authorName': 'John Lee',
+        'authorName': 'James Spader',
       },
       {
-        'imagePath': 'assets/images/scard_one.png',
-        'title': 'Sunny Egg & Toast Avocado',
+        'imagePath': 'assets/images/favorate_three.jpg',
+        'title': 'Easy homemade beef burger',
         'avatarPath': 'assets/images/per_four.jpg',
-        'authorName': 'Alice Fala',
+        'authorName': 'Agnes',
       },
       {
-        'imagePath': 'assets/images/scard_two.png',
-        'title': 'Spicy Chicken Bowl',
+        'imagePath': 'assets/images/favorate_four.jpg',
+        'title': 'Half boiled egg sandwich',
         'avatarPath': 'assets/images/per_three.jpg',
         'authorName': 'John Lee',
       },
-      // Add more items if needed
     ];
 
     final size = MediaQuery.of(context).size;
@@ -44,8 +42,8 @@ class AccountScreen extends StatelessWidget {
     final screenHeight = size.height;
 
     // Responsive padding values
-    final horizontalPadding = screenWidth * 0.05; // 5% of width
-    final topSpacing = screenHeight * 0.02; // 2% of height
+    final horizontalPadding = screenWidth * 0.05;
+    final topSpacing = screenHeight * 0.02;
 
     return Scaffold(
       body: SafeArea(
