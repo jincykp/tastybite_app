@@ -4,7 +4,7 @@ import 'package:tastybite/screens/details_screen.dart';
 import 'package:tastybite/widgets/featured_card.dart';
 import 'package:tastybite/core/app_text_styles.dart';
 import 'package:tastybite/widgets/food_card.dart';
-import 'package:tastybite/widgets/seletion_header.dart';
+import 'package:tastybite/widgets/section_header.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

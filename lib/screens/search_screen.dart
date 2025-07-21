@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/core/app_colors.dart';
 import 'package:tastybite/core/app_text_styles.dart';
+import 'package:tastybite/data/dummy_data.dart';
 import 'package:tastybite/widgets/editors_choice_card.dart';
 import 'package:tastybite/widgets/popular_recipe_card.dart';
-import 'package:tastybite/widgets/seletion_header.dart';
+import 'package:tastybite/widgets/section_header.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -15,20 +16,6 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   String selectedCategory = 'Breakfast';
   final List<String> categories = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
-
-  // List of popular recipes with different images and titles
-  final List<Map<String, String>> popularRecipes = [
-    {
-      'imagePath': 'assets/images/scard_one.png',
-      'title': 'Egg & Avo Toast Recipe',
-    },
-    {'imagePath': 'assets/images/scard_two.png', 'title': 'Bowl of Ramen'},
-    {'imagePath': 'assets/images/scard_three.jpg', 'title': 'Chicken Salad'},
-    {
-      'imagePath': 'assets/images/scard_one.png',
-      'title': 'Grilled Salmon Bowl',
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +122,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       return Padding(
                         padding: const EdgeInsets.only(right: 12.0),
                         child: PopularRecipeCard(
-                          imagePath: recipe['imagePath']!,
-                          title: recipe['title']!,
+                          imagePath: recipe.imagePath,
+                          title: recipe.title,
                         ),
                       );
                     }).toList(),

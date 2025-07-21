@@ -15,15 +15,17 @@ class _TabButtonsState extends State<TabButtons> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      padding: EdgeInsets.all(screenWidth * 0.01),
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        horizontal: screenWidth * 0.020,
+        vertical: screenWidth * 0.02,
+      ),
       decoration: BoxDecoration(
         color: AppColors.tabButtonColor,
-        borderRadius: BorderRadius.circular(
-          screenWidth * 0.06,
-        ), // ~25 for medium screen
+        borderRadius: BorderRadius.circular(screenWidth * 0.06),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildTabButton(
             context: context,
@@ -50,28 +52,27 @@ class _TabButtonsState extends State<TabButtons> {
   }) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.06,
-          vertical: screenWidth * 0.03,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.greenButton : Colors.transparent,
-          borderRadius: BorderRadius.circular(screenWidth * 0.06),
-        ),
-
-        child: Text(
-          text,
-          style: GoogleFonts.poppins(
-            color: isSelected ? AppColors.white : AppColors.greenButton,
-            fontSize: screenWidth * 0.04,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+        child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(vertical: screenWidth * 0.035),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColors.greenButton : Colors.transparent,
+            borderRadius: BorderRadius.circular(screenWidth * 0.06),
+          ),
+          child: Text(
+            text,
+            style: GoogleFonts.poppins(
+              color: isSelected ? AppColors.white : AppColors.greenButton,
+              fontSize: screenWidth * 0.04,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+            ),
           ),
         ),
       ),
